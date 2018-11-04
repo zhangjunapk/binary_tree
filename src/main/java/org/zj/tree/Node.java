@@ -7,30 +7,30 @@ package org.zj.tree;
  * @CreateTime: 2018/11/3
  * @Description: ${Description}
  */
-public class Node<K,V extends Comparable<V>> {
-    private K k;
-    private V val;
+public class Node {
+    private String k;
+    private Integer val;
     private Node left;
     private Node right;
 
-    public Node(K k, V val) {
+    public Node(String k, Integer val) {
         this.k = k;
         this.val = val;
     }
 
-    public K getK() {
+    public String getK() {
         return k;
     }
 
-    public void setK(K k) {
+    public void setK(String k) {
         this.k = k;
     }
 
-    public V getVal() {
+    public Integer getVal() {
         return val;
     }
 
-    public void setVal(V val) {
+    public void setVal(Integer val) {
         this.val = val;
     }
 
@@ -48,5 +48,15 @@ public class Node<K,V extends Comparable<V>> {
 
     public void setRight(Node right) {
         this.right = right;
+    }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "k=" + k +
+                ", val=" + val +
+                ", left=" + left +
+                ", right=" + right +
+                '}';
     }
 }

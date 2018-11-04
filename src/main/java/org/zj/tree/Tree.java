@@ -7,9 +7,9 @@ package org.zj.tree;
  * @CreateTime: 2018/11/3
  * @Description: ${Description}
  */
-public class Tree<K,V extends Comparable<V>> {
+public class Tree {
     private Node root;
-    public void insert(K k,V v){
+    public void insert(String k,Integer v){
         //先判断root是否为空
         if(root==null){
             root=new Node(k,v);
@@ -18,7 +18,7 @@ public class Tree<K,V extends Comparable<V>> {
         }
 
         //接下来遍历节点
-        Node<K, V> node = new Node<K, V>(k, v);
+        Node node = new Node(k, v);
         forInsert(node,root);
         System.out.println("--------------------------------");
     }
@@ -132,32 +132,58 @@ public class Tree<K,V extends Comparable<V>> {
 
     /**
      * 遍历树来搜索
-     * @param val
+     * @param
      */
     public void search(Integer val){
         //深度优先来遍历
-        int count=0;
-        doSearch(count,root,val);
+        doSearchValue(0,root,val);
     }
+
+    //搜索key
+    public void search(String key){
+        doSearchKey(0,root,key);
+    }
+
+    private void doSearchKey(int count, Node node, String key) {
+        count++;
+        if(node.getK().equals(key)){
+            System.out.println("我找到了，用了"+count+"  次");
+            return;
+        }
+
+        if(node.getLeft()!=null)
+            doSearchKey(count,node.getLeft(),key);
+
+        if(node.getRight()!=null)
+            doSearchKey(count,node.getRight(),key);
+
+    }
+
 
     /**
      * 递归搜索数值
      * @param node
-     * @param val
+     * @param
      */
-    private void doSearch(int count,Node node, Integer val) {
+    private void doSearchValue(int count, Node node, Integer val) {
         count++;
+
+        System.out.println(node.getVal()+"  "+val);
+
         if(node.getVal()==val){
             System.out.println("我找到了:"+node.getVal()+"用了"+count+"  次");
             return;
         }
         if(node.getLeft()!=null)
-            doSearch(count,node.getLeft(),val);
+            doSearchValue(count,node.getLeft(),val);
 
         if(node.getRight()!=null)
-            doSearch(count,node.getRight(),val);
+            doSearchValue(count,node.getRight(),val);
 
     }
+
+
+
 
 
 }
