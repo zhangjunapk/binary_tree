@@ -34,12 +34,12 @@ public class Tree {
         if(node.getLeft()==null&&node.getRight()==null){
             System.out.println("两边都空");
             //判断这个数值和当前节点的大小
-            if(node.getVal().compareTo(insertNode.getVal())>=0){
+            if(insertNode.getVal()<=node.getVal()){
                 System.out.println("    插入到"+node.getVal()+"的左边"+insertNode.getVal());
                 node.setLeft(insertNode);
                 return 0;
             }
-            if(node.getVal().compareTo(insertNode.getVal())<=0){
+            if(insertNode.getVal()>=node.getVal()){
                 System.out.println("    插入到右边");
                 node.setRight(insertNode);
                 return 0;
@@ -47,7 +47,7 @@ public class Tree {
         }
 
         //判断要插入的值是否比当前的节点大
-        if(node.getVal().compareTo(insertNode.getVal())>=0){
+        if(insertNode.getVal()<=node.getVal()){
             if(node.getLeft()!=null){
                 return forInsert(insertNode,node.getLeft());
             }
@@ -55,7 +55,7 @@ public class Tree {
             node.setLeft(insertNode);
             return 0;
         }
-        if(node.getVal().compareTo(insertNode.getVal())<=0){
+        if(insertNode.getVal()>=node.getVal()){
             if(node.getRight()!=null){
                 return forInsert(insertNode,node.getRight());
             }
